@@ -4,7 +4,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blogs?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: 123456
+    password: root
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: true  #驼峰命名转换
+    map-underscore-to-camel-case: true #驼峰命名转换
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.qfedu.pojo

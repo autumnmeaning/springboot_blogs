@@ -12,4 +12,36 @@ public class Focus {
     private int focusUid;
     private int focusStatus;
 
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getFocusUid() {
+        return focusUid;
+    }
+
+    public void setFocusUid(int focusUid) {
+        this.focusUid = focusUid;
+    }
+
+    public int getFocusStatus() {
+        return focusStatus;
+    }
+
+    public void setFocusStatus(int focusStatus) {
+        this.focusStatus = focusStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Focus{" +
+                "uid=" + uid +
+                ", focusUid=" + focusUid +
+                ", focusStatus=" + focusStatus +
+                '}';
+    }
 }
