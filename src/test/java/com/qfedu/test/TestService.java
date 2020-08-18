@@ -1,8 +1,7 @@
 package com.qfedu.test;
 
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.qfedu.pojo.User;
-import com.qfedu.service.IAdminRoleService;
+import com.qfedu.service.IUserRoleService;
 import com.qfedu.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,9 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -22,7 +19,7 @@ public class TestService {
     private IUserService userService;
 
     @Resource
-    private IAdminRoleService adminRoleService;
+    private IUserRoleService adminRoleService;
 
     @Test
     public void test1() {

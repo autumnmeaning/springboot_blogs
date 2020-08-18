@@ -7,12 +7,12 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 @Data
-@TableName("tb_admin_role")
-@ApiModel(value = "AdminRole对象")
-public class AdminRole {
+@TableName("tb_user_role")
+@ApiModel(value = "UserRole对象")
+public class UserRole {
     @TableId
-    private int adminId;
+    private int uid;
     @TableField
-    private int roleId;
+    private int rid;
 
 }
