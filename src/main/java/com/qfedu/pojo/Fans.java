@@ -15,4 +15,27 @@ public class Fans {
     @TableField
     private int fansUid;
 
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getFansUid() {
+        return fansUid;
+    }
+
+    public void setFansUid(int fansUid) {
+        this.fansUid = fansUid;
+    }
+
+    @Override
+    public String toString() {
+        return "Fans{" +
+                "uid=" + uid +
+                ", fansUid=" + fansUid +
+                '}';
+    }
 }
