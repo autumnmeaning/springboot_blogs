@@ -7,9 +7,7 @@ import lombok.Data;
 @Data
 @TableName("tb_admin_role")
 public class AdminRole {
-    @TableId
     private int adminId;
-    @TableId
     private int roleId;
 
 }
