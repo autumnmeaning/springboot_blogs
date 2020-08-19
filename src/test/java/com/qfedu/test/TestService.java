@@ -30,4 +30,9 @@ public class TestService {
         User user = userService.findUserByUsername("zhangsan");
         System.out.println(user);
     }
+
+    @Test
+    public void test3() {
+        System.out.println((int)((Math.random() * 9 + 1 ) * 1000));
+    }
 }

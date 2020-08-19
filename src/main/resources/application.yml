@@ -6,10 +6,23 @@ spring:
     username: autumn
     password: 123456
 
+#邮箱配置
+  mail:
+    host: smtp.qq.com
+    username: 836203855@qq.com
+    password: awomlsjdfohibdhb
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
   redis:
     database: 0
-    host: 127.0.0.1
-
+    host: 10.12.154.6
+    port: 6379
 upload:
   qiniu:
     ak: MZTQc6FkdNN2jK5_cQdfcAegRmweFNtSsh4Om7ra
