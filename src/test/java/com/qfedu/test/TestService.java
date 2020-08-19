@@ -1,5 +1,6 @@
 package com.qfedu.test;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.qfedu.pojo.User;
 import com.qfedu.service.IUserRoleService;
 import com.qfedu.service.IUserService;
@@ -18,9 +19,6 @@ public class TestService {
     @Resource
     private IUserService userService;
 
-    @Resource
-    private IUserRoleService adminRoleService;
-
     @Test
     public void test1() {
         List<User> list = userService.list();
@@ -29,6 +27,7 @@ public class TestService {
 
     @Test
     public void test2() {
-
+        User user = userService.findUserByUsername("zhangsan");
+        System.out.println(user);
     }
 }

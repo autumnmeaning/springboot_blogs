@@ -22,7 +22,7 @@ public class User {
     private String avatar;
     private String tel;
     private String email;
-    private String desc;
+    private String udesc;
     private Date createTime;
     private int status;
 

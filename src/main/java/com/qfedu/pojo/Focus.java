@@ -1,5 +1,7 @@
 package com.qfedu.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -8,8 +10,11 @@ import lombok.Data;
 @TableName("tb_focus")
 @ApiModel(value = "Focus对象")
 public class Focus {
+    @TableId
     private int uid;
+    @TableField
     private int focusUid;
+    @TableField
     private int focusStatus;
 
     public int getUid() {

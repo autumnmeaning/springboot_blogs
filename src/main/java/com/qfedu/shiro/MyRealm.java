@@ -1,11 +1,12 @@
 package com.qfedu.shiro;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
+import com.qfedu.pojo.Permission;
+import com.qfedu.pojo.Role;
 import com.qfedu.pojo.User;
 import com.qfedu.service.IUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -13,6 +14,7 @@ import org.apache.shiro.util.SimpleByteSource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Component("myRealm")
 public class MyRealm extends AuthorizingRealm {
@@ -22,10 +24,27 @@ public class MyRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        AuthorizationInfo info = null;
-        String admin = getAvailablePrincipal(principals).toString();
+        SimpleAuthorizationInfo info = null;
+        String user = getAvailablePrincipal(principals).toString();
 
-        return null;
+        List<Role> roles = userService.findRoleByUsername(user);
+
+        if (roles != null) {
+            info = new SimpleAuthorizationInfo();
+
+            for (Role r : roles) {
+                info.addRole(r.getRname());
+            }
+        }
+
+        List<Permission> perms = userService.findPermByUsername(user);
+
+        if (perms != null) {
+            for (Permission p : perms) {
+                info.addStringPermission(p.getPname());
+            }
+        }
+        return info;
     }
 
     @Override
@@ -35,13 +54,9 @@ public class MyRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
         String username = token.getUsername();
-
-        QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("username", username);
-        User user = userService.getOne(wrapper);
-
+        User user = userService.findUserByUsername(username);
         if (user != null) {
-            ByteSource baSalt = new SimpleByteSource("SALT");
+            ByteSource baSalt = new SimpleByteSource("Blogs");
             info = new SimpleAuthenticationInfo(username, user.getPassword(), baSalt, getName());
         }
         return info;

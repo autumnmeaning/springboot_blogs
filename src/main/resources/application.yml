@@ -2,9 +2,20 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blogs?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
-    password: root
+    url: jdbc:mysql://10.12.154.6:3306/blogs?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
+    username: autumn
+    password: 123456
+
+  redis:
+    database: 0
+    host: 127.0.0.1
+
+upload:
+  qiniu:
+    ak: MZTQc6FkdNN2jK5_cQdfcAegRmweFNtSsh4Om7ra
+    sk: CFCPqJLeE-i2gNg_LmtkOdhK_syOM_eTt-GihKs-
+    bucketname: blogs-autumn
+    url: http://qfasj77k7.hn-bkt.clouddn.com/
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true #驼峰命名转换

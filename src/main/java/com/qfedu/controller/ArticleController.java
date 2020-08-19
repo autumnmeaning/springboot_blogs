@@ -2,7 +2,6 @@ package com.qfedu.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.qfedu.pojo.Advertising;
 import com.qfedu.pojo.Article;
 import com.qfedu.service.IArticleService;
 import io.swagger.annotations.ApiOperation;
