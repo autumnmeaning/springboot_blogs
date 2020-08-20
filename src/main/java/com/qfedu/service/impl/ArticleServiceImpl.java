@@ -6,6 +6,17 @@ import com.qfedu.pojo.Article;
 import com.qfedu.service.IArticleService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
 public class ArticleServiceImpl extends ServiceImpl<IArticleMapper, Article> implements IArticleService {
+
+    @Resource
+    private IArticleMapper articleMapper;
+
+    @Override
+    public List<Article> getLikeArticleByTitle(String title) {
+        return articleMapper.getLikeArticleByTitle(title);
+    }
 }

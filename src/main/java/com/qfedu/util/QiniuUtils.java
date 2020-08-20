@@ -9,12 +9,14 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+@Component
 public class QiniuUtils {
     @Value("${upload.qiniu.ak}")
     private String accessKey;
@@ -27,7 +29,7 @@ public class QiniuUtils {
 
     public String upload(MultipartFile multipartFile){
         //构造一个带指定 Region 对象的配置类
-        Configuration cfg = new Configuration(Region.region0());
+        Configuration cfg = new Configuration(Region.region2());
         //...其他参数参考类注释
         UploadManager uploadManager = new UploadManager(cfg);
 
@@ -64,7 +66,7 @@ public class QiniuUtils {
 
     public String uploadAsString(String str){
         //构造一个带指定 Region 对象的配置类
-        Configuration cfg = new Configuration(Region.region0());
+        Configuration cfg = new Configuration(Region.region2());
         //...其他参数参考类注释
         UploadManager uploadManager = new UploadManager(cfg);
 
@@ -79,8 +81,8 @@ public class QiniuUtils {
                 Response response = uploadManager.put(byteInputStream,key,upToken,null, null);
                 //解析上传成功的结果
                 DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-               /* System.out.println(putRet.key);
-                System.out.println(putRet.hash);*/
+                System.out.println(putRet.key);
+                System.out.println(putRet.hash);
                 return url+putRet.key;
             } catch (QiniuException ex) {
                 Response r = ex.response;

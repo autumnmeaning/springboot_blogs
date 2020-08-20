@@ -3,15 +3,13 @@ package com.qfedu.controller;
 import com.qfedu.pojo.Tag;
 import com.qfedu.service.ITagService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class TagController {
 
     @Resource

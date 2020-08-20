@@ -16,6 +16,7 @@ public class CategoryController {
     private ICategoryService categoryService;
 
     @GetMapping("/Categorys")
+    @CrossOrigin
     public List<Category> findAllCategorys(){
         return categoryService.list();
     }

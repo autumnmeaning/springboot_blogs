@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Resource
@@ -27,6 +28,12 @@ public class UserController {
     @GetMapping("/GetUserById/{id}")
     public User findUserById(@PathVariable("id") Integer id) {
         User user = userService.getById(id);
+        return user;
+    }
+
+    @GetMapping("/GetUserByUsername/{username}")
+    public User findUserByUsername(@PathVariable String username) {
+        User user = userService.findUserByUsername(username);
         return user;
     }
 
@@ -72,5 +79,4 @@ public class UserController {
         }
         return "failed";
     }
-
 }

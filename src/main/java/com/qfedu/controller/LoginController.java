@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 public class LoginController {
 
     @Resource
@@ -24,7 +25,6 @@ public class LoginController {
     private IUserService userService;
 
     @PostMapping("/Login")
-    @CrossOrigin
     public String login(@RequestBody Map<String, Object> map) {
         String username = map.get("username").toString();
         String password = map.get("password").toString();
@@ -33,7 +33,7 @@ public class LoginController {
 
         try {
             subject.login(token);
-            return "success";
+            return username;
         } catch (UnknownAccountException e) {
             return "unkmown";
         } catch (IncorrectCredentialsException e) {
@@ -44,7 +44,6 @@ public class LoginController {
     }
 
     @PostMapping("/Register")
-    @CrossOrigin
     public String register(@RequestBody Map<String, Object> map) {
         String username = map.get("username").toString();
         String password = map.get("password").toString();

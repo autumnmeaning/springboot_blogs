@@ -25,6 +25,7 @@ public class User {
     private String udesc;
     private Date createTime;
     private int status;
+    private int isadmin;
 
     @TableField(exist = false)
     private List<Role> roleList;

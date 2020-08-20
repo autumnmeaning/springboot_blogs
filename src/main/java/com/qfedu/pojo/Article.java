@@ -20,8 +20,5 @@ public class Article {
     private String des;
     private String content;
     private Date createTime;
-    private String image1;
-    private String image2;
-    private String image3;
 
 }
