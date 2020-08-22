@@ -10,4 +10,6 @@ import java.util.List;
 @Mapper
 public interface IArticleMapper extends BaseMapper<Article> {
     List<Article> getLikeArticleByTitle(@Param("title") String title);
+
+
 }

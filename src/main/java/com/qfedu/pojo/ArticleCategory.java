@@ -16,4 +16,20 @@ public class ArticleCategory {
     @TableField
     private int categoryId;
 
+    public int getArticleId() {
+
+        return articleId;
+    }
+
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
 }

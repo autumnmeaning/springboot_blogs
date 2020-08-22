@@ -14,6 +14,7 @@ import java.util.List;
  * 2020/8/18
  */
 @RestController
+@CrossOrigin
 public class CommentController {
     @Resource
     private ICommentService iCommentService;
@@ -31,13 +32,19 @@ public class CommentController {
        page1.setSize(size);
        return iCommentService.page(page1);
     }
+    //根据id 查评论
+    @GetMapping("/getByComId/{comId}")
+    public Comment findByComId(@PathVariable Integer comId){
+        Comment comment = iCommentService.getById(comId);
+        return comment;
+    }
     //根据文章id查评论
     @GetMapping("/getCommByArticleid/{articleid}")
     public List<Comment> findByArticleid(@PathVariable Integer articleid){
         List<Comment> commentByArticleid = iCommentService.findByArticleid(articleid);
         return commentByArticleid;
     }
-    //根据用户id查评论
+    //根据用户(作者)id查评论
     @GetMapping("/getCommByUserid/{userid}")
     public List<Comment> findByUserid(@PathVariable Integer userid){
         List<Comment> commentByUserid = iCommentService.findByUserid(userid);
@@ -45,7 +52,7 @@ public class CommentController {
     }
     //添加评论
     @GetMapping("/creatComments")
-    public String creatComments(Comment comment){
+    public String creatComments(@RequestBody Comment comment){
 
         boolean save = iCommentService.save(comment);
         if(save){

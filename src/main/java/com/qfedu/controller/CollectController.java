@@ -21,7 +21,7 @@ public class CollectController {
     }
 
     @PostMapping("/SaveCollect")
-    public String saveCollect(Collect collect){
+    public String saveCollect(@RequestBody Collect collect){
         if (collectService.save(collect)){
             return "success";
         }

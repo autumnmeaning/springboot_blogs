@@ -2,10 +2,7 @@ package com.qfedu.controller;
 
 import com.qfedu.pojo.Permission;
 import com.qfedu.service.IPermissionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,13 +22,14 @@ public class PermissionController {
         return permissions;
     }
     //根据角色查权限
-    public List<Permission> findPermiByRole(Integer roleid){
+    @GetMapping("/getPermiByRole")
+    public List<Permission> findPermiByRole(@RequestParam Integer roleid){
         List<Permission> byRoleid = iPermissionService.findByRoleid(roleid);
         return byRoleid;
     }
     //添加
     @PostMapping("/savePermission")
-    public String savePermissions(Permission permission){
+    public String savePermissions(@RequestBody Permission permission){
         boolean save = iPermissionService.save(permission);
         if(save){
             return "success";
@@ -49,7 +47,7 @@ public class PermissionController {
     }
     //修改
     @PostMapping("/updatePermission")
-    public String updatePermission(Permission permission){
+    public String updatePermission(@RequestBody Permission permission){
         boolean update = iPermissionService.updateById(permission);
         if(update){
             return "success";

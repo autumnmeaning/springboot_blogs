@@ -19,7 +19,7 @@ public class FansController {
 
     //添加
     @PostMapping("/saveFans")
-    private String saveFans(Fans fans){
+    private String saveFans(@RequestBody Fans fans){
         boolean save = iFansService.save(fans);
         if(save){
             return "success";
@@ -36,12 +36,12 @@ public class FansController {
         return "failed";
     }
     //修改
-    @PostMapping("/UpdateFans")
+    @GetMapping("/UpdateFans")
     public String updateFans(@RequestParam("oldUid") int oldUid, @RequestParam("oldFansUid") int oldFansUid,
                                   @RequestParam("newUid") int newUid, @RequestParam("newFansUid") int newFansUid) {
         boolean remove = remove(oldUid, oldFansUid);
         Fans fans = new Fans();
-        fans.setUid(newFansUid);
+        fans.setUid(newUid);
         fans.setFansUid(newFansUid);
         if (iFansService.save(fans) && remove) {
             return "success";
