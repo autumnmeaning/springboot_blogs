@@ -1,5 +1,6 @@
 package com.qfedu.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qfedu.pojo.Comment;
@@ -7,6 +8,7 @@ import com.qfedu.service.ICommentService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +16,7 @@ import java.util.List;
  * 2020/8/18
  */
 @RestController
+@CrossOrigin
 public class CommentController {
     @Resource
     private ICommentService iCommentService;
@@ -31,6 +34,17 @@ public class CommentController {
        page1.setSize(size);
        return iCommentService.page(page1);
     }
+
+    @GetMapping("/GetCommentPageByArticleId")
+    public IPage<Comment> GetCommentPageByArticleId(@RequestParam("articleId") int articleId, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int size) {
+        IPage<Comment> page1 = new Page<>();
+        page1.setCurrent(page);
+        page1.setSize(size);
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("article_id", articleId);
+        return iCommentService.page(page1, wrapper);
+    }
+
     //根据文章id查评论
     @GetMapping("/getCommByArticleid/{articleid}")
     public List<Comment> findByArticleid(@PathVariable Integer articleid){
@@ -53,6 +67,17 @@ public class CommentController {
         }
         return "failed";
     }
+
+    //添加评论
+    @PostMapping("/SaveComments")
+    public String saveComments(@RequestBody Comment comment){
+        comment.setCreateTime(new Date());
+        boolean save = iCommentService.save(comment);
+        if(save){
+            return "success";
+        }
+        return "failed";
+    }
     //删除评论
     @GetMapping("/removeByCommid/{commentid}")
     public String deleteCommentByCommid(@PathVariable Integer commentid){
@@ -62,4 +87,12 @@ public class CommentController {
         }
         return "failed";
     }
+
+    @GetMapping("/GetCommentByArticleId/{articleId}")
+    public List<Comment> GetCommentByArticleId(@PathVariable int articleId) {
+        return iCommentService.getCommentCreateTimeDescByArticleId(articleId);
+    }
+
+
+
 }

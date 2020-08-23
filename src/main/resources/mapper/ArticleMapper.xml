@@ -8,4 +8,10 @@
             and title like concat('%', #{title}, '%')
         </where>
     </select>
+    <select id="getArticleByCreateTimeDesc" resultType="article">
+        select * from tb_article order by create_time desc limit #{count}, #{newcount}
+    </select>
+    <select id="getArticleByVisitorsDesc" resultType="article">
+        select * from tb_article order by visitors desc limit 10
+    </select>
 </mapper>

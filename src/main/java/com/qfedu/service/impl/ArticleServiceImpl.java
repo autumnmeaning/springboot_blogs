@@ -19,4 +19,16 @@ public class ArticleServiceImpl extends ServiceImpl<IArticleMapper, Article> imp
     public List<Article> getLikeArticleByTitle(String title) {
         return articleMapper.getLikeArticleByTitle(title);
     }
+
+    @Override
+    public List<Article> getArticleByCreateTimeDesc(int count, int newcount) {
+        return articleMapper.getArticleByCreateTimeDesc(count, newcount);
+    }
+
+    @Override
+    public List<Article> getArticleByVisitorsDesc() {
+        return articleMapper.getArticleByVisitorsDesc();
+    }
+
+
 }

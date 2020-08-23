@@ -8,4 +8,8 @@ import java.util.List;
 
 public interface IArticleService extends IService<Article> {
     List<Article> getLikeArticleByTitle(@Param("title") String title);
+
+    List<Article> getArticleByCreateTimeDesc(int count, int newcount);
+
+    List<Article> getArticleByVisitorsDesc();
 }

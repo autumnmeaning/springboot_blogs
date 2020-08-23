@@ -1,5 +1,6 @@
 package com.qfedu.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qfedu.pojo.Advertising;
@@ -8,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.sql.Wrapper;
 import java.util.List;
 
 @RestController
@@ -26,9 +28,11 @@ public class AdvertisingController {
     @ApiOperation(value = "获取分页的advertising对象的列表信息")
     public IPage<Advertising> findPageAdvertising(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
         IPage<Advertising> page1 = new Page<>();
-        page1.setPages(page);
+        page1.setCurrent(page);
         page1.setSize(size);
-        return advertisingService.page(page1);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("status", 1);
+        return advertisingService.page(page1, queryWrapper);
     }
 
     @GetMapping("/FindAdvertisingById/{adverId}")

@@ -20,5 +20,6 @@ public class Article {
     private String des;
     private String content;
     private Date createTime;
+    private int visitors;
 
 }

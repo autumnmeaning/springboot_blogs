@@ -22,4 +22,9 @@ public class CommentServiceImpl extends ServiceImpl<ICommentMapper, Comment> imp
     public List<Comment> findByUserid(Integer userid) {
         return iCommentMapper.findByUserid(userid);
     }
+
+    @Override
+    public List<Comment> getCommentCreateTimeDescByArticleId(int articleId) {
+        return iCommentMapper.getCommentCreateTimeDescByArticleId(articleId);
+    }
 }

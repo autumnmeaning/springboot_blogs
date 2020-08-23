@@ -2,6 +2,7 @@ package com.qfedu.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qfedu.pojo.Article;
 import com.qfedu.pojo.Category;
 import com.qfedu.service.ICategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class CategoryController {
 
     @Resource
@@ -58,4 +60,8 @@ public class CategoryController {
         return "failed";
     }
 
+    @GetMapping("/SelectByCategoryName/{categoryName}")
+    public List<Article> selectByCategoryName(@PathVariable String categoryName) {
+        return categoryService.findArticleByCategoryName(categoryName);
+    }
 }

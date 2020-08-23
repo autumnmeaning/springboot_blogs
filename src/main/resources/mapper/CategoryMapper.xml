@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.mapper.ICategoryMapper">
+    <select id="findArticleByCategoryName" resultType="article">
+        select a.* from tb_category c inner join tb_article_category ac on c.category_id = ac.category_id inner join tb_article a on ac.article_id = a.article_id where category_name = #{categoryName}
+    </select>
+</mapper>

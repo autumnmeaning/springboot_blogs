@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -79,4 +80,17 @@ public class UserController {
         }
         return "failed";
     }
+
+    @PostMapping("/UpdateAvatar")
+    public String updateAvatar(@RequestBody Map<String, Object> map) {
+        int uid = (int) map.get("uid");
+        String avatar = map.get("imageUrl").toString();
+        User user = userService.getById(uid);
+        user.setAvatar(avatar);
+        if (userService.updateById(user)) {
+            return "success";
+        }
+        return "failed";
+    }
+
 }

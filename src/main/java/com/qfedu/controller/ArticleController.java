@@ -30,17 +30,39 @@ public class ArticleController {
     @Resource
     private IArticleTagService articleTagService;
 
-    @GetMapping("/Article")
+    @GetMapping("/Articles")
     @ApiOperation(value = "获取所有article对象的列表信息")
     public List<Article> findAllArticle() {
         return articleService.list();
+    }
+
+    @GetMapping("/ArticleByVisitorsDesc")
+    @ApiOperation(value = "获取访客前20的article对象的列表信息")
+    public List<Article> getTwentyArticle() {
+        return articleService.getArticleByVisitorsDesc();
+    }
+
+
+    @PostMapping("/ArticlesDesc")
+    @ApiOperation(value = "获取倒序排序的所有article对象的列表信息")
+    public List<Article> getAllDescArticle(@RequestBody Map<String, Integer> map) {
+        Integer count = map.get("count");
+        Integer newcount = map.get("newcount");
+        return articleService.getArticleByCreateTimeDesc(count, newcount);
+    }
+
+    @PostMapping("/LikeTiTle")
+    @ApiOperation(value = "获取搜索到的所有article对象的列表信息")
+    public List<Article> getArticleLikeTitle(@RequestBody Map<String, String> map) {
+        String s = map.get("title");
+        return articleService.getLikeArticleByTitle(s);
     }
 
     @GetMapping("/PageArticle")
     @ApiOperation(value = "获取分页的article对象的列表信息")
     public IPage<Article> findPageArticle(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
          IPage<Article> page1 = new Page<>();
-         page1.setPages(page);
+         page1.setCurrent(page);
          page1.setSize(size);
          return articleService.page(page1);
     }
@@ -50,6 +72,19 @@ public class ArticleController {
     public Article findArticleById(@PathVariable int articleId) {
         return articleService.getById(articleId);
     }
+
+    @GetMapping("/FindArticleByTitle/{title}")
+    @ApiOperation(value = "获取指定Title的article对象")
+    public Article findArticleByTitle(@PathVariable String title) {
+
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("title", title);
+        Article article = articleService.getOne(queryWrapper);
+        article.setVisitors(article.getVisitors() + 1);
+        articleService.updateById(article);
+        return article;
+    }
+
 
     @PostMapping("/SaveArticle")
     @ApiOperation(value = "新增article对象")

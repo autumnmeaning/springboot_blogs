@@ -11,4 +11,6 @@ import java.util.List;
 public interface ICommentMapper extends BaseMapper<Comment> {
     List<Comment> findByArticleid(@Param("articleid") Integer articleid);
     List<Comment> findByUserid(@Param("uid") Integer uid);
+
+    List<Comment> getCommentCreateTimeDescByArticleId(@Param("articleId") int articleId);
 }
