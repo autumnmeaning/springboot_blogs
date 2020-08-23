@@ -14,4 +14,5 @@ public interface IArticleMapper extends BaseMapper<Article> {
     List<Article> getArticleByCreateTimeDesc(@Param("count") int count, @Param("newcount") int newcount);
 
     List<Article> getArticleByVisitorsDesc();
+
 }

@@ -2,10 +2,7 @@ package com.qfedu.controller;
 
 import com.qfedu.pojo.Focus;
 import com.qfedu.service.IFocusService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -23,7 +20,7 @@ public class FocusController {
 
     //添加
     @PostMapping("/saveFocus")
-    private String saveFocus(Focus focus){
+    private String saveFocus(@RequestBody Focus focus){
         boolean save = iFocusService.save(focus);
         if(save){
             return "success";
@@ -40,7 +37,7 @@ public class FocusController {
         return "failed";
     }
     //修改
-    @PostMapping("/UpdateFocus")
+    @GetMapping("/UpdateFocus")
     public String updateFocus(@RequestParam("oldUid") int oldUid, @RequestParam("oldFocusUid") int oldFocusUid,
                              @RequestParam("newUid") int newUid, @RequestParam("newFocusUid") int newFocusUid,@RequestParam("focusStatus") Integer focusStatus) {
         boolean remove = remove(oldUid, oldFocusUid,focusStatus);

@@ -14,4 +14,8 @@
     <select id="getArticleByVisitorsDesc" resultType="article">
         select * from tb_article order by visitors desc limit 10
     </select>
+    <select id="getArticleCountByDate" resultType="article">
+        SELECT DATE_FORMAT(ta.create_time,'%Y-%c-%d')date,COUNT(ta.article_id)count
+from tb_article ta GROUP BY date
+    </select>
 </mapper>

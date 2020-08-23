@@ -13,6 +13,7 @@ import java.sql.Wrapper;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class AdvertisingController {
 
     @Resource
